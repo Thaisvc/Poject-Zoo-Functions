@@ -11,7 +11,6 @@ function countEntrants(entrants) {
   };
   return visitas;
 }
-
 function calculateEntry(entrants) {
   if (entrants === undefined || Object.entries(entrants).length === 0) { return 0; }
   const visitantes = countEntrants(entrants);
