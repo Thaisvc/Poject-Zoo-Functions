@@ -1,34 +1,25 @@
-/* eslint-disable */
 const data = require('../data/zoo_data');
 
-let child = 0;
-let adult = 0;
-let senior = 0;
 function countEntrants(entrants) {
-  return entrants.reduce((acumulador, valorAtual) => {
-    if (valorAtual.age >= 1 && valorAtual.age < 18) {
-      console.log(valorAtual.age ,'aki');
-       childs = acumulador;
-    } else if (valorAtual.age >= 18 && valorAtual.age < 50) {
-       adult = acumulador;
-    } else if (valorAtual.age >= 50) {
-       senior = acumulador;
-    }
-
-    return {child: childs, adult: adult, senior: senior  }
-  })
-
+  const childV = entrants.filter((entrant) => entrant.age < 18);
+  const adultVi = entrants.filter((entrant) => entrant.age >= 18 && entrant.age < 50);
+  const seniorV = entrants.filter((entrant) => entrant.age >= 50);
+  const visitas = {
+    child: childV.length,
+    adult: adultVi.length,
+    senior: seniorV.length,
+  };
+  return visitas;
 }
-console.log(countEntrants([
-	{ name:  'Lara Carvalho', age:  3 },
-	{ name:  'Frederico Moreira', age:  3 },
-	{ name:  'Pedro Henrique Carvalho', age:  3 },
-	{ name:  'Maria Costa', age:  18 },
-	{ name:  'Núbia Souza', age:  18 },
-	{ name:  'Carlos Nogueira', age:  50 },
-]));
 
 function calculateEntry(entrants) {
+  if (entrants === undefined || Object.entries(entrants).length === 0) { return 0; }
+  const visitantes = countEntrants(entrants);
+  const childPreco = visitantes.child * data.prices.child;
+  const adultPreco = visitantes.adult * data.prices.adult;
+  const seniorPreco = visitantes.senior * data.prices.senior;
+  const totalPreco = childPreco + adultPreco + seniorPreco;
+  return totalPreco;
 }
 
 module.exports = { calculateEntry, countEntrants };
