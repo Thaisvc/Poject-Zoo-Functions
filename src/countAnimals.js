@@ -1,6 +1,5 @@
 const data = require('../data/zoo_data');
 const { species } = require('../data/zoo_data');
-/* eslint-disable */
 
 const countAnimals = (animal) => {
   if (animal === undefined) {
