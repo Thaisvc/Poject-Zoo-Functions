@@ -2,9 +2,9 @@ const data = require('../data/zoo_data');
 
 const { employees } = data;
 
-function getEmployeeByName(employeeName) {
-  if (employeeName !== undefined) {
-    employees.find((psor) => psor.firstName === employeeName || psor.lastName === employeeName);
+function getEmployeeByName(employee) {
+  if (employee !== undefined) {
+    return employees.find((pson) => pson.firstName === employee || pson.lastName === employee);
   }
   return {};
 }
